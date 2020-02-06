@@ -3,34 +3,53 @@
 #------------------------------------------------------------
 
 
-#------------------------------------------------------------
-# Table: Association
-#------------------------------------------------------------
 
-CREATE TABLE Association(
-        IdAssociation          Int NOT NULL ,
-        libelleAssociation     Varchar (25) NOT NULL ,
-        imageAssociation       Varchar (40) NOT NULL ,
-        descriptionAssociation Text NOT NULL ,
-        dateNaissance          Date NOT NULL ,
-        adresseMail            Varchar (60) NOT NULL ,
-        motPasse               Varchar (60) NOT NULL
-	,CONSTRAINT Association_PK PRIMARY KEY (IdAssociation)
-)ENGINE=InnoDB;
+CREATE TABLE `association` (
+  `idAssociation` int(3) NOT NULL,
+  `libelleAssociation` varchar(30) DEFAULT NULL,
+  `imageAssociation` varchar(40) NOT NULL,
+  `descriptionAssociation` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `association`
+--
+
+INSERT INTO `association` (`idAssociation`, `libelleAssociation`, `imageAssociation`, `descriptionAssociation`) VALUES
+(1, 'ligue de plongée', 'plongee.png', 'plouf plouf'),
+(2, 'ligue de ping-pong', 'ping-pong.jpg', 'poc poc');
 
 
-#------------------------------------------------------------
-# Table: statut
-#------------------------------------------------------------
 
-CREATE TABLE statut(
-        idStatut      Int NOT NULL ,
-        libelleStatut Varchar (3) NOT NULL ,
-        IdAssociation Int NOT NULL
-	,CONSTRAINT statut_PK PRIMARY KEY (idStatut)
 
-	,CONSTRAINT statut_Association_FK FOREIGN KEY (IdAssociation) REFERENCES Association(IdAssociation)
-)ENGINE=InnoDB;
+CREATE TABLE `statut` (
+  `idAssociation` int(3) NOT NULL,
+  `idStatut` int(3) NOT NULL,
+  `libelleStatut` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `statut`
+--
+
+INSERT INTO `statut` (`idAssociation`, `idStatut`, `libelleStatut`) VALUES
+(1, 1, 'Membre du bureau'),
+(1, 2, 'Adhérent'),
+(1, 3, 'Abonné'),
+(2, 1, 'Membre du bureau'),
+(2, 2, 'Adhérent');
+
+ALTER TABLE `association`
+  ADD PRIMARY KEY (`idAssociation`);
+  ALTER TABLE `statut`
+  ADD PRIMARY KEY (`idAssociation`,`idStatut`);
+  ALTER TABLE `statut`
+  ADD CONSTRAINT `statut_ibfk_1` FOREIGN KEY (`idAssociation`) REFERENCES `association` (`idAssociation`);
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+
 
 
 #------------------------------------------------------------
@@ -82,12 +101,15 @@ CREATE TABLE utilisateur(
         idStatut   Int NOT NULL ,
         idPays     Int NOT NULL ,
         idCivilite Int NOT NULL ,
-        idAvatar   Int NOT NULL
+        idAvatar   Int NOT NULL ,
+        idAssociation INT NOT NULL 
 	,CONSTRAINT utilisateur_PK PRIMARY KEY (pseudo)
 
-	,CONSTRAINT utilisateur_statut_FK FOREIGN KEY (idStatut) REFERENCES statut(idStatut)
+	
 	,CONSTRAINT utilisateur_pays0_FK FOREIGN KEY (idPays) REFERENCES pays(idPays)
 	,CONSTRAINT utilisateur_civilite1_FK FOREIGN KEY (idCivilite) REFERENCES civilite(idCivilite)
 	,CONSTRAINT utilisateur_galerieAvatar2_FK FOREIGN KEY (idAvatar) REFERENCES galerieAvatar(idAvatar)
 )ENGINE=InnoDB;
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `utilisateurFKassoStatut` FOREIGN KEY (`idAssociation`,`idStatut`) REFERENCES `statut` (`idAssociation`, `idStatut`);
 
