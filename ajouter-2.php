@@ -5,21 +5,19 @@
 	}
 	catch(Exception $e)
 	{
-			die('Erreur : '.$e->getMessage());
+		die('Erreur : '.$e->getMessage());
 	}
-	
-	
 	?>
 
 <?php      
     echo '<table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:80%"><tbody>';
     echo '<tr> 
-            <td>Nom Univers</td> 
-            <td>Devise</td>
-            <td>Camp</td>
-            <td>Nom Personnage</td>
-            <td>Histoire personnage</td>
-        </tr>
+        	<td>Nom Univers</td> 
+        	<td>Devise</td>
+        	<td>Camp</td>
+        	<td>Nom Personnage</td>
+        	<td>Histoire personnage</td>
+        	</tr>
         <tr>';
     $result1 = $bdd->query("SELECT nomPerso, histoirePerso, libelleUnivers, deviseUnivers, libelleCamp FROM `personnage` p JOIN univers u ON p.idUnivers= u.idUnivers JOIN camp c ON p.idCamp = c.idCamp AND p.idUnivers=c.idUnivers");
     
