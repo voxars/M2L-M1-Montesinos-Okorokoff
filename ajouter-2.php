@@ -30,7 +30,6 @@
         $i=$i+1;
         if($i==2)
         {
-bite
             $i=0;
             echo '<td>' . $donnees['libelleUnivers'] . '</td>';
             echo '<td>' . $donnees['deviseUnivers'] . '</td>';
