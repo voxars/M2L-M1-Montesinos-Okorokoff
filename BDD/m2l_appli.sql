@@ -114,7 +114,10 @@ CREATE TABLE `utilisateur` (
   `idPays` int(11) NOT NULL,
   `idCivilite` int(11) NOT NULL,
   `idAvatar` int(11) NOT NULL,
-  `idAssociation` int(11) NOT NULL
+  `idAssociation` int(11) NOT NULL,
+  `dateNaissance` DATE NOT NULL,
+  `adresseMail` VARCHAR(60) NOT NULL,
+  `motsPasse` VARCHAR(3)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
