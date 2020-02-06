@@ -3,10 +3,9 @@
 
 ?>
 <div class="container">
-<br />
-	<div class="shadow p-3 mb-5 bg-white rounded">
-	Vous etes ici pour nous devoiler votre position dans l'univers
-	</div>
+	<h1>Qu'est ce que ce site ?</h1>
+
+	Une petite application pas très utile ;)
 </div>
 <?php 
 	include ("footer.php");

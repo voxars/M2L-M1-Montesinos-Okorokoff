@@ -1,0 +1,27 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+header {
+	background-color: #2196f3 ;
+	font-size: 20.0pt;
+	text-align: center;
+	color: white;
+}
+
+
+footer.page-footer {
+	margin-top:20pt;
+    bottom: 0;
+    color: #fff;
+	padding:5pt;
+}
+
+.blue {
+    background-color: #2196f3 !important;
+}

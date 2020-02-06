@@ -1,29 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            
-            
-			<a class="nav-link" href="index.php?"><i class="fas fa-home"></i></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="presentation.php?">Présentation</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Choix de l'univers
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="index.php?choix=1">Star Trek</a>
-                      <a class="dropdown-item" href="index.php?choix=2">Star Wars</a>
-                      <a class="dropdown-item" href="index.php?suite=1">Ajouter son univers</a>
-                      
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.php?suite=2">Voir tout les univers</a>
-                  </li>
-              </ul>
-            </div>
-          </nav>
+﻿<nav class="navbar navbar-default" role="navigation">
+    <!-- Partie de la barre toujours affichée -->
+    <div class="navbar-header">
+        <!-- Bouton d'accès affiché à droite si la zone d'affichage est trop petite -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-target">
+            <span class="sr-only">Activer la navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.php"><span class="glyphicon glyphicon-home"></span></a>
+    </div>
+    <!-- Partie de la barre masquée si la surface d'affichage est insuffisante -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-target">
+        <ul class="nav navbar-nav">
+        	<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="creerUtilisateur.php">Nouvel utilisateur
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<?php
+					$SQL = "SELECT idAssociation, libelleAssociation FROM association";
+					$resultats=$connexion->query($SQL); // on execute notre requête
+					$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
+					while ($ligne = $resultats->fetch()){
+						echo '<li><a href="creerUtilisateur.php?choix='.$ligne->idAssociation.'">'.$ligne->libelleAssociation.'</a></li>';
+					}		
+					$resultats->closeCursor(); // on ferme le curseur des résultats*/
+					?>
+				</ul>
+			</li>
+			<li><a href="fiches.php">Utilisateurs déjà créés</a></li>
+    	</ul>
+		
+    </div>
+</nav>
