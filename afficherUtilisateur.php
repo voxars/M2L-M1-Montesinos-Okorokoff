@@ -13,6 +13,9 @@ $nom = "pas de nom transmis";
 $prenom = "pas de prénom transmis";
 $statut = "";
 $image = "";
+$genre = "";
+$mail = "pas de mail transmis";
+
 
 if (isset($_GET['choix']) && $_GET['choix'] != ""){
 	$asso = htmlentities($_GET['choix']);
@@ -55,9 +58,23 @@ if (isset($_POST['statut'])&& $_POST['statut'] != ""){
 		$erreur = true;
 	}
 }
+if (isset($_POST['mail'])&& $_POST['mail'] != ""){
+	$mail = htmlentities($_POST['mail']);
+	if (strlen($mail) > 10 and !is_string($mail) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+		// AFFICHER ICI UNE ERREUR
+		$erreur = true;
+	}
+}
+if (isset($_POST['genre'])&& $_POST['genre'] != ""){
+	$genre = htmlentities($_POST['genre']);
+	if (strlen($genre) > 10 and !is_string($genre) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+		// AFFICHER ICI UNE ERREUR
+		$erreur = true;
+	}
+}
 
 if (!$erreur) {
-	$req = $connexion->prepare('INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut) VALUES (:pseudo, :nom, :prenom, :asso, :statut)');
+	$req = $connexion->prepare('INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut, adresseMail, idCivilite ) VALUES (:pseudo, :nom, :prenom, :asso, :statut, :mail, :genre)');
 	//$req2 = 'INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut) VALUES("'.$pseudo.'","'.$nom.'","'.$prenom.'", '.$asso.','.$statut.')';
 	//echo $req2;
 
@@ -66,7 +83,9 @@ if (!$erreur) {
 		'nom' => $nom,
 		'prenom' => $prenom,
 	    'asso' => $asso,
-	    'statut' => $statut
+		'statut' => $statut,
+		'mail' => $mail,
+		'genre' => $genre
 	    ));
 
 	if ($resultat){
@@ -95,6 +114,20 @@ if (!$erreur) {
 				?>
 				<div class="col-md-3">	
 					<u>Statut </u><br/> <?php echo $libelleStatut; ?>
+				</div>
+				<div class="col-md-3">	
+					<u>Mail : </u><br/> <?php echo $nom; ?>
+				</div>
+				<?php
+					$SQL3 = "SELECT libelleGenre FROM genre WHERE idGenre = ".$genre." AND idAssociation = ".$asso.";";
+					$resultats=$connexion->query($SQL); // on execute notre requête
+					$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
+					$ligne = $resultats->fetch();
+					$libelleGenre = $ligne->libelleGenre;
+					$resultats->closeCursor(); // on ferme le curseur des résultats*/
+				?>
+				<div class="col-md-3">	
+					<u>Genre </u><br/> <?php echo $libelleGenre; ?>
 				</div>
 
 			</div>
