@@ -54,17 +54,17 @@
 				</div>
 				<div class="col-md-3">
 					<label for="nom">Quel est votre adresse mail ?</label>
-					<textarea rows="1" class="form-control form-control-lg" id="pseudo" name="pseudo"></textarea>
+					<textarea rows="1" class="form-control form-control-lg" id="mail" name="mail"></textarea>
 				</div>
 				<div class="col-md-3">
 					<label for="camp">Quel est votre genre ?</label>
-					<select name="statut" id="statut" class="form-control form-control-lg">
+					<select name="genre" id="genre" class="form-control form-control-lg">
 						<?php
-							$SQL2 = "SELECT idStatut, libelleStatut FROM association A JOIN statut S ON A.idAssociation = S.idAssociation WHERE S.idAssociation =".$asso;
+							$SQL2 = "SELECT idCivilite, libelleCivilite FROM civilite WHERE idCivilite =".$asso;
 							$resultats=$connexion->query($SQL2); // on execute notre requête
 							$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
 							while ($ligne = $resultats->fetch()){
-								echo '<option value="'.$ligne->idStatut.'">'.$ligne->libelleStatut.'</option>';
+								echo '<option value="'.$ligne->idCivilite.'">'.$ligne->libelleCivilite.'</option>';
 							}		
 							$resultats->closeCursor(); // on ferme le curseur des résultats*/
 						?>
