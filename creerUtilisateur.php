@@ -86,11 +86,11 @@
 				</div>
 				<div class="col-md-3">
 					<label for="nom">Quel est votre mot de passe ?</label>
-					<textarea rows="1" class="form-control form-control-lg" id="motpasse" name="motpasse"></textarea>
+					<input type="password" class="form-control" id="motpasse" placeholder="Mot de passe">
 				</div>
 				<div class="col-md-3">
-					<label for="nom">Confirmer mot de passe </label>
-					<textarea rows="1" class="form-control form-control-lg" name="motpasse"></textarea>
+				<label for="pwd">Confirmation mot de passe:</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
 				</div>
 			</div>
 			<br/>
