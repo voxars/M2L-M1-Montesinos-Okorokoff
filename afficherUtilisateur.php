@@ -66,6 +66,16 @@ if (isset($_POST['mail'])&& $_POST['mail'] != ""){
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
+    $requete = "SELECT adresseMail FROM utilisateur WHERE adresseMail = '".$mail."' ";
+
+    $nbLignes = nbLignesRequete($requete);
+
+	if ($nbLignes > 0) {
+		echo'<script type="text/javascript">
+		alert("Psedo invalide");
+		</script>';
+		$erreur = true;
+	}
 }
 if (isset($_POST['genre'])&& $_POST['genre'] != ""){
 	$genre = htmlentities($_POST['genre']);
