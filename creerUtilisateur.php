@@ -88,6 +88,10 @@
 					<label for="nom">Quel est votre mot de passe ?</label>
 					<textarea rows="1" class="form-control form-control-lg" id="motpasse" name="motpasse"></textarea>
 				</div>
+				<div class="col-md-3">
+					<label for="nom">Confirmer mot de passe </label>
+					<textarea rows="1" class="form-control form-control-lg" name="motpasse"></textarea>
+				</div>
 			</div>
 			<br/>
 			<div class="row">
