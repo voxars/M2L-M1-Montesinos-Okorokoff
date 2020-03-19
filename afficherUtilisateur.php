@@ -73,8 +73,25 @@ if (isset($_POST['genre'])&& $_POST['genre'] != ""){
 	}
 }
 
+if (isset($_POST['motpasse'])&& $_POST['motpasse'] != ""){
+	$motpasse = htmlentities($_POST['motpasse']);
+	if (strlen($motpasse) > 10 and !is_string($motpasse) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+		// AFFICHER ICI UNE ERREUR
+		$erreur = true;
+	}
+}
+
+if (isset($_POST['pays'])&& $_POST['pays'] != ""){
+	$pays = htmlentities($_POST['pays']);
+	if (strlen($pays) > 5 and !is_string($pays) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+		// AFFICHER ICI UNE ERREUR
+		$erreur = true;
+	}
+}
+
 if (!$erreur) {
-	$req = $connexion->prepare('INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut, adresseMail, idCivilite ) VALUES (:pseudo, :nom, :prenom, :asso, :statut, :mail, :genre)');
+	$req = $connexion->prepare('INSERT INTO utilisateurs
+	 (pseudo, nom, prenom, idAssociation, idStatut, adresseMail, idCivilite ) VALUES (:pseudo, :nom, :prenom, :asso, :statut, :mail, :genre)');
 	//$req2 = 'INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut) VALUES("'.$pseudo.'","'.$nom.'","'.$prenom.'", '.$asso.','.$statut.')';
 	//echo $req2;
 
