@@ -70,6 +70,24 @@
 						?>
 					</select>
 				</div>
+				<div class="col-md-3">
+					<label for="pays">Quel est votre pays ?</label>
+					<select name="pays" id="pays" class="form-control form-control-lg">
+						<?php
+							$SQL4 = "SELECT idPays, libellePays FROM pays ";
+							$resultats=$connexion->query($SQL4); // on execute notre requête
+							$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
+							while ($ligne = $resultats->fetch()){
+								echo '<option value="'.$ligne->idPays.'">'.$ligne->libellePays.'</option>';
+							}		
+							$resultats->closeCursor(); // on ferme le curseur des résultats*/
+						?>
+					</select>
+				</div>
+				<div class="col-md-3">
+					<label for="nom">Quel est votre mot de passe ?</label>
+					<textarea rows="1" class="form-control form-control-lg" id="motpasse" name="motpasse"></textarea>
+				</div>
 			</div>
 			<br/>
 			<div class="row">
