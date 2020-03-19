@@ -33,7 +33,9 @@ $erreur = false;
 if (isset($_POST['pseudo']) && $_POST['pseudo'] != ""){
 	$pseudo = htmlentities($_POST['pseudo']);
 	if (strlen($pseudo) > 20 || !is_string($pseudo) ){
-		// AFFICHER ICI UNE ERREUR
+		echo'<script type="text/javascript">
+  		alert("Psedo invalide");
+		</script>';
 		$erreur = true;
 	}
 }
