@@ -32,21 +32,21 @@ if (isset($_GET['choix']) && $_GET['choix'] != ""){
 $erreur = false;
 if (isset($_POST['pseudo']) && $_POST['pseudo'] != ""){
 	$pseudo = htmlentities($_POST['pseudo']);
-	if (strlen($pseudo) > 20 and !is_string($pseudo) ){
+	if (strlen($pseudo) > 20 || !is_string($pseudo) ){
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
 }
 if (isset($_POST['nom']) && $_POST['nom'] != ""){
 	$nom = htmlentities($_POST['nom']);
-	if (strlen($nom) > 20 and !is_string($nom) ){
+	if (strlen($nom) > 20 || !is_string($nom) ){
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
 }
 if (isset($_POST['prenom']) && $_POST['prenom'] != ""){
 	$prenom = htmlentities($_POST['prenom']);
-	if (strlen($prenom) > 20 and !is_string($prenom) ){
+	if (strlen($prenom) > 20 || !is_string($prenom) ){
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
@@ -60,7 +60,7 @@ if (isset($_POST['statut'])&& $_POST['statut'] != ""){
 }
 if (isset($_POST['mail'])&& $_POST['mail'] != ""){
 	$mail = htmlentities($_POST['mail']);
-	if (strlen($mail) > 10 and !is_string($mail) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+	if (strlen($mail) > 10 || !is_string($mail) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
@@ -75,7 +75,7 @@ if (isset($_POST['genre'])&& $_POST['genre'] != ""){
 
 if (isset($_POST['motpasse'])&& $_POST['motpasse'] != ""){
 	$motpasse = htmlentities($_POST['motpasse']);
-	if (strlen($motpasse) > 10 and !is_string($motpasse) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+	if (strlen($motpasse) > 10 || !is_string($motpasse) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
@@ -83,7 +83,7 @@ if (isset($_POST['motpasse'])&& $_POST['motpasse'] != ""){
 
 if (isset($_POST['pays'])&& $_POST['pays'] != ""){
 	$pays = htmlentities($_POST['pays']);
-	if (strlen($pays) > 5 and !is_string($pays) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+	if (strlen($pays) > 5 || !is_string($pays) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
