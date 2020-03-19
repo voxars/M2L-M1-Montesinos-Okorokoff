@@ -53,7 +53,7 @@ if (isset($_POST['prenom']) && $_POST['prenom'] != ""){
 }
 if (isset($_POST['statut'])&& $_POST['statut'] != ""){
 	$statut = htmlentities($_POST['statut']);
-	if (strlen($statut) > 10 and !is_string($statut) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+	if (strlen($statut) > 10 ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
@@ -67,7 +67,7 @@ if (isset($_POST['mail'])&& $_POST['mail'] != ""){
 }
 if (isset($_POST['genre'])&& $_POST['genre'] != ""){
 	$genre = htmlentities($_POST['genre']);
-	if (strlen($genre) > 10 and !is_string($genre) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+	if (strlen($genre) > 10 ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
 		// AFFICHER ICI UNE ERREUR
 		$erreur = true;
 	}
