@@ -32,9 +32,9 @@ if (isset($_GET['choix']) && $_GET['choix'] != ""){
 $erreur = false;
 if (isset($_POST['pseudo']) && $_POST['pseudo'] != ""){
 	$pseudo = htmlentities($_POST['pseudo']);
-	if (strlen($pseudo) > 20 || !is_string($pseudo) ){
+	if (strlen($pseudo) > 20 || !is_string($pseudo) || strlen($pseudo) < 4){
 		echo'<script type="text/javascript">
-  		alert("Pseudo invalide");
+  		alert("Psedo invalide");
 		</script>';
 		$erreur = true;
 	}
@@ -83,6 +83,16 @@ if (isset($_POST['motpasse'])&& $_POST['motpasse'] != ""){
 	}
 }
 
+if (isset($_POST['motpasseConfirme'])&& $_POST['motpasseConfirme'] != ""){
+	$motpasseConfirme = htmlentities($_POST['motpasseConfirme']);
+	if ($motpasse !== $motpasseConfirme){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
+		echo'<script type="text/javascript">
+  		alert("Confirmation de mdp invalide");
+		</script>';
+		$erreur = true;
+	}
+}
+
 if (isset($_POST['pays'])&& $_POST['pays'] != ""){
 	$pays = htmlentities($_POST['pays']);
 	if (strlen($pays) > 5 || !is_string($pays) ){ // Pas sur je le met à combien de char la vérif, j'ai mis 10 mais faudra peut etre changer
@@ -92,8 +102,7 @@ if (isset($_POST['pays'])&& $_POST['pays'] != ""){
 }
 
 if (!$erreur) {
-	$req = $connexion->prepare('INSERT INTO utilisateurs
-	 (pseudo, nom, prenom, idAssociation, idStatut, adresseMail, idCivilite ) VALUES (:pseudo, :nom, :prenom, :asso, :statut, :mail, :genre)');
+	$req = $connexion->prepare('INSERT INTO utilisateurs (pseudo, nom, prenom, idAssociation, idStatut, adresseMail, idCivilite ) VALUES (:pseudo, :nom, :prenom, :asso, :statut, :mail, :genre)');
 	//$req2 = 'INSERT INTO utilisateur (pseudo, nom, prenom, idAssociation, idStatut) VALUES("'.$pseudo.'","'.$nom.'","'.$prenom.'", '.$asso.','.$statut.')';
 	//echo $req2;
 
