@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 06 Février 2020 à 10:12
+-- Généré le :  Mer 18 Mars 2020 à 15:44
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `association` (
-  `idAssociation` int(3) NOT NULL AUTO_INCREMENT,
+  `idAssociation` int(3) NOT NULL,
   `libelleAssociation` varchar(30) DEFAULT NULL,
   `imageAssociation` varchar(40) NOT NULL,
   `descriptionAssociation` text NOT NULL
@@ -52,7 +52,9 @@ CREATE TABLE `civilite` (
   `libelleCivilite` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+--
+-- Contenu de la table `civilite`
+--
 
 INSERT INTO `civilite` (`idCivilite`, `libelleCivilite`) VALUES
 (1, 'monsieur'),
@@ -66,13 +68,16 @@ INSERT INTO `civilite` (`idCivilite`, `libelleCivilite`) VALUES
 --
 
 CREATE TABLE `galerieavatar` (
-  `idAvatar` int(11) NOT NULL AUTO_INCREMENT,
+  `idAvatar` int(11) NOT NULL,
   `lienImage` varchar(100) NOT NULL,
   `ageMin` int(11) NOT NULL,
   `ageMax` int(11) NOT NULL,
   `idCivilite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Contenu de la table `galerieavatar`
+--
 
 INSERT INTO `galerieavatar` (`idAvatar`, `lienImage`, `ageMin`, `ageMax`, `idCivilite`) VALUES
 (1, 'galerie_avatars/hommes/junior/HJ1.png', 0, 24, 1),
@@ -100,7 +105,6 @@ INSERT INTO `galerieavatar` (`idAvatar`, `lienImage`, `ageMin`, `ageMax`, `idCiv
 (23, 'galerie_avatars/femmes/senior/FS3.png', 50, 140, 2),
 (24, 'galerie_avatars/femmes/senior/FS4.png', 50, 140, 2);
 
-
 -- --------------------------------------------------------
 
 --
@@ -112,6 +116,9 @@ CREATE TABLE `pays` (
   `libellePays` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Contenu de la table `pays`
+--
 
 INSERT INTO `pays` (`idPays`, `libellePays`) VALUES
 (132, 'Afghanistan'),
@@ -356,7 +363,6 @@ INSERT INTO `pays` (`idPays`, `libellePays`) VALUES
 (371, 'Serbie-et-Monténégro'),
 (372, 'Zambie');
 
-
 -- --------------------------------------------------------
 
 --
@@ -365,7 +371,7 @@ INSERT INTO `pays` (`idPays`, `libellePays`) VALUES
 
 CREATE TABLE `statut` (
   `idAssociation` int(3) NOT NULL,
-  `idStatut` int(3) NOT NULL ,
+  `idStatut` int(3) NOT NULL,
   `libelleStatut` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -395,9 +401,9 @@ CREATE TABLE `utilisateur` (
   `idCivilite` int(11) NOT NULL,
   `idAvatar` int(11) NOT NULL,
   `idAssociation` int(11) NOT NULL,
-  `dateNaissance` DATE NOT NULL,
-  `adresseMail` VARCHAR(60) NOT NULL,
-  `motsPasse` VARCHAR(3)
+  `dateNaissance` date NOT NULL,
+  `adresseMail` varchar(60) NOT NULL,
+  `motsPasse` varchar(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -414,7 +420,7 @@ ALTER TABLE `association`
 -- Index pour la table `civilite`
 --
 ALTER TABLE `civilite`
-  ADD PRIMARY KEY (`idCivilite`);
+  ADD PRIMARY KEY (`idCivilite`) USING BTREE;
 
 --
 -- Index pour la table `galerieavatar`

@@ -28,6 +28,8 @@ $resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat 
 			  <th class="th-sm" scope="col">prénom</th>
 			  <th class="th-sm" scope="col">association</th>
 			  <th class="th-sm" scope="col">statut</th>
+			  <th class="th-sm" scope="col">mail</th>
+			  <th class="th-sm" scope="col">genre</th>
 			</tr>
 		  </thead>
 		  <tbody>
@@ -41,7 +43,9 @@ $resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat 
 				  <td>'. $ligne->prenom .'</td>
 				  <td>'. $ligne->libelleAssociation .'</td>
 				  <td>'. $ligne->libelleStatut .'</td>
-				</tr>';
+				  <td>'. $ligne->libelleMail .'</td>
+				  <td>'. $ligne->libelleGenre .'</td>
+				  </tr>';
 			}
 			$resultats->closeCursor(); // on ferme le curseur des résultats*/
 			?>

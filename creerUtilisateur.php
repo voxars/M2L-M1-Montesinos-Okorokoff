@@ -57,10 +57,10 @@
 					<textarea rows="1" class="form-control form-control-lg" id="mail" name="mail"></textarea>
 				</div>
 				<div class="col-md-3">
-					<label for="camp">Quel est votre genre ?</label>
+					<label for="genre">Quel est votre genre ?</label>
 					<select name="genre" id="genre" class="form-control form-control-lg">
 						<?php
-							$SQL3 = "SELECT idCivilite, libelleCivilite FROM civilite C JOIN gallerieavatar G ON C.idCivilite = G.idCivilite WHERE G.idCivilite =".$civilite;
+							$SQL3 = "SELECT idCivilite, libelleCivilite FROM civilite ";
 							$resultats=$connexion->query($SQL3); // on execute notre requête
 							$resultats->setFetchMode(PDO::FETCH_OBJ); // on dit qu'on veut que le résultat soit récupérable sous forme d'objet
 							while ($ligne = $resultats->fetch()){
