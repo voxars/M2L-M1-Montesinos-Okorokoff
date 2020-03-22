@@ -25,14 +25,14 @@
            		if (/^[a-zA-Z]{1,100}$/.test(name))
            		{        
            		    $('#status2').html('c\'est bon');        // affecte ce message au statut
-           		    //$('#test').css('border','1px solid green');
-           		    //$('#test').css('background','lightgreen');
+           		    $('#nom').css('border','1px solid green');
+           		    $('#nom').css('background','lightgreen');
            		}
            		else
            		{
            		    $('#status2').html('pas bon');    
-           		    //$('#test').css('border','1px solid red');
-           		    //$('#test').css('background','pink');
+           		    $('#nom').css('border','1px solid red');
+           		    $('#nom').css('background','pink');
            		}
         	}  
 
@@ -41,14 +41,14 @@
            		if (/^[a-zA-Z]{1,100}$/.test(name))
            		{        
            		    $('#status3').html('c\'est bon');        // affecte ce message au statut
-           		    //$('#test').css('border','1px solid green');
-           		    //$('#test').css('background','lightgreen');
+           		    $('#prenom').css('border','1px solid green');
+           		    $('#prenom').css('background','lightgreen');
            		}
            		else
            		{
            		    $('#status3').html('pas bon');    
-           		    //$('#test').css('border','1px solid red');
-           		    //$('#test').css('background','pink');
+           		    $('#prenom').css('border','1px solid red');
+           		    $('#prenom').css('background','pink');
            		}
         	} 
 
@@ -57,47 +57,55 @@
            		if (/^a*.{4,15}$/.test(name))
            		{        
            		    $('#St_Pseudo').html('c\'est bon');        // affecte ce message au statut
-           		    //$('#test').css('border','1px solid green');
-           		    //$('#test').css('background','lightgreen');
+           		    $('#pseudo').css('border','1px solid green');
+           		    $('#pseudo').css('background','lightgreen');
            		}
            		else
            		{
            		    $('#St_Pseudo').html('pas bon');    
-           		    //$('#test').css('border','1px solid red');
-           		    //$('#test').css('background','pink');
+           		    $('#pseudo').css('border','1px solid red');
+           		    $('#pseudo').css('background','pink');
            		}
         	} 
 
 			function VerifMdp(){
            		var name = $('#motpasse').val();
-           		if (/^a*.{6,150}$/.test(name))
+           		if (/^(?=.*\d)(?=.*[a-zA-Z]).{6,20}$/.test(name))
            		{        
-					if (/^[0-9]{1,150}$/.test(name)) {
-           		    	$('#st_mdp').html('c\'est bon');        // affecte ce message au statut
-           		    	//$('#test').css('border','1px solid green');
-           		    	//$('#test').css('background','lightgreen');
-					}
-					else
-           			{
-           			    $('#st_mdp').html('pas bon');    
-           			    //$('#test').css('border','1px solid red');
-           			    //$('#test').css('background','pink');
-           			}
+					$('#st_mdp').html('c\'est bon');        // affecte ce message au statut
+					$('#motpasse').css('border','1px solid green');
+					$('#motpasse').css('background','lightgreen');           			
 				}
            		else
            		{
            		    $('#st_mdp').html('pas bon');    
-           		    //$('#test').css('border','1px solid red');
-           		    //$('#test').css('background','pink');
+           		    $('#motpasse').css('border','1px solid red');
+           		    $('#motpasse').css('background','pink');
            		}
         	}
 
+			function VerifMdp2(){
+				var motpasse = document.getElementById("motpasse").value;
+				var verifmdp = document.getElementById("verifmdp").value;
+           		if (motpasse == verifmdp)
+           		{        
+					$('#verif_mdp').html('c\'est bon');        // affecte ce message au statut
+					$('#verifmdp').css('border','1px solid green');
+					$('#verifmdp').css('background','lightgreen');           			
+				}
+           		else
+           		{
+           		    $('#verif_mdp').html('pas bon');    
+           		    $('#verifmdp').css('border','1px solid red');
+           		    $('#verifmdp').css('background','pink');
+           		}
+        	}
 
 		</script>
 
 		<h2><?php echo $description; ?></h2>
 		
-		<form method="post" id="saisie" action="afficherUtilisateur.php?choix=<?php echo $asso; ?>">
+		<form method="post" id="saisie" name="saisie" action="afficherUtilisateur.php?choix=<?php echo $asso; ?>">
 				<div class="row">	
 					<div class="col-md-3">	
 					<img class="img-responsive" src="<?php echo $image; ?>" />
@@ -133,7 +141,7 @@
 				</div>
 				<div class="col-md-3">
 					<label for="nom">Quel est votre adresse mail ?</label>
-					<textarea rows="1" class="form-control form-control-lg" id="mail" name="mail"></textarea>
+					<input type="email" class="form-control" id="mail" name="mail"></input>
 				</div>
 				<div class="col-md-3">
 					<label for="genre">Quel est votre genre ?</label>
@@ -165,12 +173,13 @@
 				</div>
 				<div class="col-md-3">
 					<label for="nom">Quel est votre mot de passe ?</label>
-					<input type="password" class="form-control" id="motpasse" placeholder="Mot de passe"  onkeyup="VerifMdp();" >
+					<input type="password" class="form-control" id="motpasse" name="motpasse" placeholder="Mot de passe"  onkeyup="VerifMdp();" >
 					<span id="st_mdp"></span>
 				</div>
 				<div class="col-md-3">
-				<label for="pwd">Confirmation mot de passe:</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
+					<label for="nom">Verifier mot de passe</label>
+					<input type="password" class="form-control" id="verifmdp" name="verifmdp" placeholder="Mot de passe" onkeyup="VerifMdp2();" >
+					<span id="verif_mdp"></span>
 				</div>
 			</div>
 			<br/>
@@ -191,4 +200,3 @@
 <?php 
 	include ("footer.php");
 ?>
-
